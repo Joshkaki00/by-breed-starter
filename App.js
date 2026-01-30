@@ -14,7 +14,11 @@ const BreedItem = ({ item }) => {
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <FlatList
+        data={cats}  // or dogs
+        renderItem={({ item }) => <BreedItem item={item} />}
+        keyExtractor={(item) => item.breed}
+      />
       <StatusBar style="auto" />
     </View>
   );
