@@ -1,5 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { cats, dogs } from './breeds.js';
+
+// Component to render each breed item
+const BreedItem = ({ item }) => {
+  return (
+    <View>
+      <Text>{item.breed}</Text>
+    </View>
+  );
+};
 
 export default function App() {
   return (
