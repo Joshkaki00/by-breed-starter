@@ -14,14 +14,16 @@ const BreedItem = ({ item }) => {
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={[...cats, ...dogs]}
-        renderItem={({ item }) => <BreedItem item={item} />}
-        keyExtractor={(item) => item.breed}
-      />
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.container} edges={['top']}>
+        <FlatList
+          data={[...cats, ...dogs]}
+          renderItem={({ item }) => <BreedItem item={item} />}
+          keyExtractor={(item) => item.breed}
+        />
+        <StatusBar style="auto" />
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
