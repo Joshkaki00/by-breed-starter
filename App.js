@@ -15,7 +15,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <FlatList
-        data={cats, dogs}  // or dogs
+        data={[...cats, ...dogs]}
         renderItem={({ item }) => <BreedItem item={item} />}
         keyExtractor={(item) => item.breed}
       />
