@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { cats, dogs } from './breeds.js';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 // Component to render each breed item
 const BreedItem = ({ item }) => {
