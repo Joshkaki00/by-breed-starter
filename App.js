@@ -1,5 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { 
+  StyleSheet, Text, View, FlatList, TextInput, KeyboardAvoidingView, Platform 
+} from 'react-native';
+import { useState } from 'react';
 import { cats, dogs } from './breeds.js';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
