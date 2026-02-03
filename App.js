@@ -31,10 +31,13 @@ const BreedItem = ({ item }) => {
 
 export default function App() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedType, setSelectedType] = useState('cats'); // 'cats' or 'dogs'
   
-  // Combine and filter breeds
-  const allBreeds = [...cats, ...dogs];
-  const filteredBreeds = allBreeds.filter(breed =>
+  // Select breeds based on toggle
+  const currentBreeds = selectedType === 'cats' ? cats : dogs;
+  
+  // Filter breeds
+  const filteredBreeds = currentBreeds.filter(breed =>
     breed.breed.toLowerCase().includes(searchTerm.toLowerCase())
   );
   
@@ -45,12 +48,48 @@ export default function App() {
           style={styles.container}
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         >
+          {/* Toggle Buttons */}
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity 
+              style={[
+                styles.button, 
+                selectedType === 'cats' && styles.buttonActive
+              ]}
+              onPress={() => setSelectedType('cats')}
+            >
+              <Text style={[
+                styles.buttonText,
+                selectedType === 'cats' && styles.buttonTextActive
+              ]}>
+                Cats
+              </Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={[
+                styles.button, 
+                selectedType === 'dogs' && styles.buttonActive
+              ]}
+              onPress={() => setSelectedType('dogs')}
+            >
+              <Text style={[
+                styles.buttonText,
+                selectedType === 'dogs' && styles.buttonTextActive
+              ]}>
+                Dogs
+              </Text>
+            </TouchableOpacity>
+          </View>
+          
+          {/* Search Input */}
           <TextInput
             style={styles.searchInput}
             placeholder="Search breeds..."
             value={searchTerm}
             onChangeText={setSearchTerm}
           />
+          
+          {/* Breed List */}
           <FlatList
             data={filteredBreeds}
             renderItem={({ item }) => <BreedItem item={item} />}
