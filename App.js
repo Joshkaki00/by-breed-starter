@@ -48,8 +48,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+  headerRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
   propertyRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',  // Pushes items to left and right
+    justifyContent: 'space-between',
   },
 });
