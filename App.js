@@ -46,14 +46,41 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#f5f5f5',
+  },
+  breedCard: {
     backgroundColor: '#fff',
+    paddingHorizontal: 16,  // Left and right padding
+    paddingVertical: 12,    // Top and bottom padding
+    marginVertical: 8,      // Space between cards
   },
   headerRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginBottom: 8,
+  },
+  breedName: {
+    fontSize: 24,           // Larger breed name
+    fontWeight: 'bold',
+    color: '#333',
+  },
+  averageText: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#666',
   },
   propertyRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    paddingVertical: 4,
+  },
+  propertyLabel: {
+    fontSize: 14,
+    color: '#666',
+  },
+  propertyValue: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#333',
   },
 });
