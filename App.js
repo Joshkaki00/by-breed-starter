@@ -7,6 +7,16 @@ import { useState } from 'react';
 import { cats, dogs } from './breeds.js';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
+const renderStars = (rating, maxRating = 5) => {
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating % 1 >= 0.5;
+  const emptyStars = maxRating - fullStars - (hasHalfStar ? 1 : 0);
+  
+  return '★'.repeat(fullStars) + 
+         (hasHalfStar ? '½' : '') + 
+         '☆'.repeat(emptyStars);
+};
+
 // Component to render each breed item
 const BreedItem = ({ item }) => {
   const keys = Object.keys(item).filter(key => key !== 'breed' && key !== 'name');
