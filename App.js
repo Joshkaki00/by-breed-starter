@@ -28,12 +28,18 @@ const BreedItem = ({ item }) => {
     <View style={styles.breedCard}>
       <View style={styles.headerRow}>
         <Text style={styles.breedName}>{item.breed}</Text>
-        <Text style={styles.averageText}>Avg: {average.toFixed(1)}</Text>
+        {/* Stars with numeric average */}
+        <Text style={styles.averageText}>
+          {renderStars(average)} {average.toFixed(1)}
+        </Text>
       </View>
       {keys.map(key => (
         <View key={key} style={styles.propertyRow}>
           <Text style={styles.propertyLabel}>{key}</Text>
-          <Text style={styles.propertyValue}>{item[key]}</Text>
+          {/* Stars with numeric value */}
+          <Text style={styles.propertyValue}>
+            {renderStars(item[key])} {item[key]}
+          </Text>
         </View>
       ))}
     </View>
