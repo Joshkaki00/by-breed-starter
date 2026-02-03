@@ -1,6 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
 import { 
-  StyleSheet, Text, View, FlatList, TextInput, KeyboardAvoidingView, Platform 
+  StyleSheet, Text, View, FlatList, TextInput, 
+  KeyboardAvoidingView, Platform, TouchableOpacity 
 } from 'react-native';
 import { useState } from 'react';
 import { cats, dogs } from './breeds.js';
