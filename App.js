@@ -56,6 +56,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f5f5f5',
   },
+  searchInput: {
+    backgroundColor: '#fff',
+    padding: 12,
+    marginHorizontal: 16,
+    marginVertical: 8,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    fontSize: 16,
+  },
   breedCard: {
     backgroundColor: '#fff',
     paddingHorizontal: 16,  // Left and right padding
