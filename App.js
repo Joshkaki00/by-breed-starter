@@ -29,20 +29,27 @@ const BreedItem = ({ item }) => {
   );
 };
 
-export default function App() {
+const BreedItem = ({ item }) => {
+  const keys = Object.keys(item).filter(key => key !== 'breed' && key !== 'name');
+  const values = keys.map(key => item[key]);
+  const sum = values.reduce((total, val) => total + val, 0);
+  const average = sum / values.length;
+  
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.container} edges={['top']}>
-        <FlatList
-          data={[...cats, ...dogs]}
-          renderItem={({ item }) => <BreedItem item={item} />}
-          keyExtractor={(item) => item.breed}
-        />
-        <StatusBar style="auto" />
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <View style={styles.breedCard}>
+      <View style={styles.headerRow}>
+        <Text style={styles.breedName}>{item.breed}</Text>
+        <Text style={styles.averageText}>Avg: {average.toFixed(1)}</Text>
+      </View>
+      {keys.map(key => (
+        <View key={key} style={styles.propertyRow}>
+          <Text style={styles.propertyLabel}>{key}</Text>
+          <Text style={styles.propertyValue}>{item[key]}</Text>
+        </View>
+      ))}
+    </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
