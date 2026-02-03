@@ -5,12 +5,19 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 // Component to render each breed item
 const BreedItem = ({ item }) => {
-  // Get all property keys except 'breed' (and 'name' if it exists)
   const keys = Object.keys(item).filter(key => key !== 'breed' && key !== 'name');
+  
+  // Calculate average rating
+  const values = keys.map(key => item[key]);
+  const sum = values.reduce((total, val) => total + val, 0);
+  const average = sum / values.length;
   
   return (
     <View>
-      <Text>{item.breed}</Text>
+      <View style={styles.headerRow}>
+        <Text>{item.breed}</Text>
+        <Text>Avg: {average.toFixed(1)}</Text>
+      </View>
       {keys.map(key => (
         <View key={key} style={styles.propertyRow}>
           <Text>{key}</Text>
