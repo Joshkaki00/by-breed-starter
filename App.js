@@ -5,9 +5,18 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 // Component to render each breed item
 const BreedItem = ({ item }) => {
+  // Get all property keys except 'breed' (and 'name' if it exists)
+  const keys = Object.keys(item).filter(key => key !== 'breed' && key !== 'name');
+  
   return (
     <View>
       <Text>{item.breed}</Text>
+      {keys.map(key => (
+        <View key={key} style={styles.propertyRow}>
+          <Text>{key}</Text>
+          <Text>{item[key]}</Text>
+        </View>
+      ))}
     </View>
   );
 };
