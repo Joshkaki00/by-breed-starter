@@ -38,7 +38,11 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,  // Makes FlatList fill the screen
+    flex: 1,
     backgroundColor: '#fff',
+  },
+  propertyRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',  // Pushes items to left and right
   },
 });
