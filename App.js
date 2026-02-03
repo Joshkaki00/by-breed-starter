@@ -29,27 +29,39 @@ const BreedItem = ({ item }) => {
   );
 };
 
-const BreedItem = ({ item }) => {
-  const keys = Object.keys(item).filter(key => key !== 'breed' && key !== 'name');
-  const values = keys.map(key => item[key]);
-  const sum = values.reduce((total, val) => total + val, 0);
-  const average = sum / values.length;
+export default function App() {
+  const [searchTerm, setSearchTerm] = useState('');
+  
+  // Combine and filter breeds
+  const allBreeds = [...cats, ...dogs];
+  const filteredBreeds = allBreeds.filter(breed =>
+    breed.breed.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   
   return (
-    <View style={styles.breedCard}>
-      <View style={styles.headerRow}>
-        <Text style={styles.breedName}>{item.breed}</Text>
-        <Text style={styles.averageText}>Avg: {average.toFixed(1)}</Text>
-      </View>
-      {keys.map(key => (
-        <View key={key} style={styles.propertyRow}>
-          <Text style={styles.propertyLabel}>{key}</Text>
-          <Text style={styles.propertyValue}>{item[key]}</Text>
-        </View>
-      ))}
-    </View>
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.container} edges={['top']}>
+        <KeyboardAvoidingView 
+          style={styles.container}
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        >
+          <TextInput
+            style={styles.searchInput}
+            placeholder="Search breeds..."
+            value={searchTerm}
+            onChangeText={setSearchTerm}
+          />
+          <FlatList
+            data={filteredBreeds}
+            renderItem={({ item }) => <BreedItem item={item} />}
+            keyExtractor={(item) => item.breed}
+          />
+        </KeyboardAvoidingView>
+        <StatusBar style="auto" />
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
