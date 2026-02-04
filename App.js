@@ -168,15 +168,37 @@ const styles = StyleSheet.create({
   buttonTextActive: {
     color: '#fff',
   },
-  searchInput: {
-    backgroundColor: '#fff',
-    padding: 12,
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
     marginHorizontal: 16,
     marginBottom: 8,
+    position: 'relative',  // Makes it a positioned container for absolute children
+  },
+  searchInput: {
+    flex: 1,
+    backgroundColor: '#fff',
+    padding: 12,
+    paddingRight: 40,      // IMPORTANT: Makes room for X button inside
     borderRadius: 8,
     borderWidth: 1,
     borderColor: '#ddd',
     fontSize: 16,
+  },
+  clearButton: {
+    position: 'absolute',  // Positions relative to searchContainer
+    right: 10,             // 10px from right edge (INSIDE the input)
+    width: 24,
+    height: 24,
+    borderRadius: 12,      // Makes it circular
+    backgroundColor: '#ccc',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  clearButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   breedCard: {
     backgroundColor: '#fff',
