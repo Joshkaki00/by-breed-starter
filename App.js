@@ -68,23 +68,34 @@ export default function App() {
             {/* ...buttons... */}
           </View>
           
-          {/* Search Input */}
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Search breeds..."
-            value={searchTerm}
-            onChangeText={setSearchTerm}
-            returnKeyType="done"           // Show "Done" button on keyboard
-            onSubmitEditing={Keyboard.dismiss}  // Dismiss when user presses Done
-          />
+          {/* Search Input with Clear Button */}
+          <View style={styles.searchContainer}>
+            <TextInput
+              style={styles.searchInput}
+              placeholder="Search breeds..."
+              value={searchTerm}
+              onChangeText={setSearchTerm}
+              returnKeyType="done"
+              onSubmitEditing={Keyboard.dismiss}
+            />
+            {/* Show X button only when there's text */}
+            {searchTerm.length > 0 && (
+              <TouchableOpacity 
+                style={styles.clearButton}
+                onPress={() => setSearchTerm('')}
+              >
+                <Text style={styles.clearButtonText}>✕</Text>
+              </TouchableOpacity>
+            )}
+          </View>
           
-          {/* Breed List - tapping items dismisses keyboard */}
+          {/* Breed List */}
           <FlatList
             data={filteredBreeds}
             renderItem={({ item }) => <BreedItem item={item} />}
             keyExtractor={(item) => item.breed}
-            keyboardShouldPersistTaps="handled"  // Important: allows tapping list items
-            onScrollBeginDrag={Keyboard.dismiss}  // Dismiss when user starts scrolling
+            keyboardShouldPersistTaps="handled"
+            onScrollBeginDrag={Keyboard.dismiss}
           />
         </KeyboardAvoidingView>
         <StatusBar style="auto" />
