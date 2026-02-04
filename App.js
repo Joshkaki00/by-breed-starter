@@ -109,75 +109,39 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f5f5f5',
   },
-  buttonContainer: {
+  // ... existing styles ...
+  
+  searchContainer: {
     flexDirection: 'row',
-    padding: 16,
-    gap: 12,
-  },
-  button: {
-    flex: 1,
-    padding: 12,
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    borderWidth: 2,
-    borderColor: '#ddd',
     alignItems: 'center',
-  },
-  buttonActive: {
-    backgroundColor: '#007AFF',
-    borderColor: '#007AFF',
-  },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#333',
-  },
-  buttonTextActive: {
-    color: '#fff',
-  },
-  searchInput: {
-    backgroundColor: '#fff',
-    padding: 12,
     marginHorizontal: 16,
     marginBottom: 8,
+    position: 'relative',  // For absolute positioning of X button
+  },
+  searchInput: {
+    flex: 1,  // Changed: now takes full width of container
+    backgroundColor: '#fff',
+    padding: 12,
+    paddingRight: 40,  // Make room for X button
     borderRadius: 8,
     borderWidth: 1,
     borderColor: '#ddd',
     fontSize: 16,
   },
-  breedCard: {
-    backgroundColor: '#fff',
-    paddingHorizontal: 16,  // Left and right padding
-    paddingVertical: 12,    // Top and bottom padding
-    marginVertical: 8,      // Space between cards
+  clearButton: {
+    position: 'absolute',
+    right: 10,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: '#ccc',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  headerRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 8,
-  },
-  breedName: {
-    fontSize: 24,           // Larger breed name
+  clearButtonText: {
+    color: '#fff',
+    fontSize: 16,
     fontWeight: 'bold',
-    color: '#333',
   },
-  averageText: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#666',
-  },
-  propertyRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 4,
-  },
-  propertyLabel: {
-    fontSize: 14,
-    color: '#666',
-  },
-  propertyValue: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: '#333',
-  },
+  // ... rest of styles ...
 });
