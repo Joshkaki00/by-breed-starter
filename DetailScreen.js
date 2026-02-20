@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 const renderStars = (rating, maxRating = 5) => {
   const fullStars = Math.floor(rating);
@@ -36,7 +37,10 @@ DetailScreen.propTypes = {
         <View style={styles.header}>
           <Text style={styles.breedName}>{breed.breed}</Text>
           <View style={styles.averageContainer}>
-            <Text style={styles.averageLabel}>Overall Rating</Text>
+            <View style={styles.averageLabelRow}>
+              <Ionicons name="trophy" size={16} color="#FFD700" />
+              <Text style={styles.averageLabel}>Overall Rating</Text>
+            </View>
             <Text style={styles.averageText}>
               {renderStars(average)} {average.toFixed(1)}
             </Text>
@@ -45,7 +49,10 @@ DetailScreen.propTypes = {
         
         {/* Properties List */}
         <View style={styles.propertiesContainer}>
-          <Text style={styles.sectionTitle}>Characteristics</Text>
+          <View style={styles.sectionTitleRow}>
+            <Ionicons name="list" size={20} color="#007AFF" />
+            <Text style={styles.sectionTitle}>Characteristics</Text>
+          </View>
           {keys.map((key, index) => (
             <View key={key} style={[
               styles.propertyRow,
@@ -93,10 +100,15 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: '#e0e0e0',
   },
+  averageLabelRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+    gap: 6,
+  },
   averageLabel: {
     fontSize: 14,
     color: '#666',
-    marginBottom: 8,
     textTransform: 'uppercase',
     letterSpacing: 1,
   },
@@ -115,11 +127,16 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 3,
   },
+  sectionTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+    gap: 8,
+  },
   sectionTitle: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#333',
-    marginBottom: 16,
   },
   propertyRow: {
     flexDirection: 'row',

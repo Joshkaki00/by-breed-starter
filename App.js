@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
 import { cats, dogs } from './breeds.js';
 import HomeScreen from './HomeScreen';
 import DetailScreen from './DetailScreen';
@@ -79,7 +80,7 @@ export default function App() {
     <SafeAreaProvider>
       <NavigationContainer>
         <Tab.Navigator
-          screenOptions={{
+          screenOptions={({ route }) => ({
             headerShown: false,
             tabBarActiveTintColor: '#007AFF',
             tabBarInactiveTintColor: '#999',
@@ -92,20 +93,24 @@ export default function App() {
               fontSize: 14,
               fontWeight: '600',
             },
-          }}
+            tabBarIcon: ({ focused, color, size }) => {
+              const iconName = focused ? 'paw' : 'paw-outline';
+              return <Ionicons name={iconName} size={size} color={color} />;
+            },
+          })}
         >
           <Tab.Screen 
             name="Cats" 
             component={CatsStack}
             options={{
-              tabBarLabel: '🐱 Cats',
+              tabBarLabel: 'Cats',
             }}
           />
           <Tab.Screen 
             name="Dogs" 
             component={DogsStack}
             options={{
-              tabBarLabel: '🐶 Dogs',
+              tabBarLabel: 'Dogs',
             }}
           />
         </Tab.Navigator>

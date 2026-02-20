@@ -5,6 +5,7 @@ import {
   KeyboardAvoidingView, Platform, TouchableOpacity,
   Keyboard
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 const renderStars = (rating, maxRating = 5) => {
   const fullStars = Math.floor(rating);
@@ -46,7 +47,10 @@ BreedItem.propTypes = {
           </View>
         ))}
         {keys.length > 3 && (
-          <Text style={styles.moreText}>Tap to see all {keys.length} characteristics →</Text>
+          <View style={styles.moreContainer}>
+            <Text style={styles.moreText}>Tap to see all {keys.length} characteristics</Text>
+            <Ionicons name="chevron-forward" size={16} color="#007AFF" />
+          </View>
         )}
       </View>
     </TouchableOpacity>
@@ -73,6 +77,12 @@ HomeScreen.propTypes = {
     >
       {/* Search Input with Clear Button */}
       <View style={styles.searchContainer}>
+        <Ionicons 
+          name="search" 
+          size={20} 
+          color="#999" 
+          style={styles.searchIcon}
+        />
         <TextInput
           style={styles.searchInput}
           placeholder="Search breeds..."
@@ -89,7 +99,7 @@ HomeScreen.propTypes = {
               Keyboard.dismiss();
             }}
           >
-            <Text style={styles.clearButtonText}>✕</Text>
+            <Ionicons name="close-circle" size={20} color="#999" />
           </TouchableOpacity>
         )}
       </View>
@@ -122,32 +132,22 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginTop: 8,
     marginBottom: 8,
-    position: 'relative',
-  },
-  searchInput: {
-    flex: 1,
     backgroundColor: '#fff',
-    padding: 12,
-    paddingRight: 40,
     borderRadius: 8,
     borderWidth: 1,
     borderColor: '#ddd',
+    paddingHorizontal: 12,
+  },
+  searchIcon: {
+    marginRight: 8,
+  },
+  searchInput: {
+    flex: 1,
+    padding: 12,
     fontSize: 16,
   },
   clearButton: {
-    position: 'absolute',
-    right: 10,
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    backgroundColor: '#ccc',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  clearButtonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
+    padding: 4,
   },
   breedCard: {
     backgroundColor: '#fff',
@@ -192,10 +192,15 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: '#333',
   },
+  moreContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 8,
+  },
   moreText: {
     fontSize: 13,
     color: '#007AFF',
     fontStyle: 'italic',
-    marginTop: 8,
+    marginRight: 4,
   },
 });
