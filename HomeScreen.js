@@ -59,6 +59,7 @@ BreedItem.propTypes = {
 
 export default function HomeScreen({ navigation, breeds }) {
   const [searchTerm, setSearchTerm] = useState('');
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
 
 HomeScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
@@ -76,11 +77,14 @@ HomeScreen.propTypes = {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       {/* Search Input with Clear Button */}
-      <View style={styles.searchContainer}>
+      <View style={[
+        styles.searchContainer,
+        isSearchFocused && styles.searchContainerFocused
+      ]}>
         <Ionicons 
           name="search" 
           size={20} 
-          color="#999" 
+          color={isSearchFocused ? "#007AFF" : "#999"} 
           style={styles.searchIcon}
         />
         <TextInput
@@ -88,10 +92,12 @@ HomeScreen.propTypes = {
           placeholder="Search breeds..."
           value={searchTerm}
           onChangeText={setSearchTerm}
+          onFocus={() => setIsSearchFocused(true)}
+          onBlur={() => setIsSearchFocused(false)}
           returnKeyType="done"
           onSubmitEditing={Keyboard.dismiss}
         />
-        {searchTerm.length > 0 && (
+        {(searchTerm.length > 0 || isSearchFocused) && (
           <TouchableOpacity 
             style={styles.clearButton}
             onPress={() => {
@@ -99,7 +105,11 @@ HomeScreen.propTypes = {
               Keyboard.dismiss();
             }}
           >
-            <Ionicons name="close-circle" size={20} color="#999" />
+            <Ionicons 
+              name="close-circle" 
+              size={22} 
+              color={searchTerm.length > 0 ? "#007AFF" : "#ccc"} 
+            />
           </TouchableOpacity>
         )}
       </View>
@@ -137,6 +147,16 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ddd',
     paddingHorizontal: 12,
+    transition: 'all 0.2s',
+  },
+  searchContainerFocused: {
+    borderColor: '#007AFF',
+    borderWidth: 2,
+    shadowColor: '#007AFF',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
   },
   searchIcon: {
     marginRight: 8,
@@ -148,6 +168,7 @@ const styles = StyleSheet.create({
   },
   clearButton: {
     padding: 4,
+    marginLeft: 4,
   },
   breedCard: {
     backgroundColor: '#fff',
